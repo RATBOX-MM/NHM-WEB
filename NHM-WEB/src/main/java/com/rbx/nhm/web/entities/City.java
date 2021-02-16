@@ -63,6 +63,14 @@ public class City implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
 
 	public String getLongName() {
 		return longName;

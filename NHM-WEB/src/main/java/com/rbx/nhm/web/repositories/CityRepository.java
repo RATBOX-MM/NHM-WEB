@@ -7,5 +7,5 @@ public class CityRepository extends MainRepository<City> {
 	public CityRepository() {
 		super(City.class);
 	}
-
+	
 }

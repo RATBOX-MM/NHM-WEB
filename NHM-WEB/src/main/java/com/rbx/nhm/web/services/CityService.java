@@ -1,8 +1,6 @@
 package com.rbx.nhm.web.services;
 
 import java.util.List;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -10,23 +8,18 @@ import javax.inject.Inject;
 
 import com.rbx.nhm.web.entities.City;
 import com.rbx.nhm.web.repositories.CityRepository;
-
-/**
- * 
- * @author kaungsithu
- * @since 07-02-2021
- *
- */
+import com.rbx.nhm.web.utilities.CommonFunctionality;
 
 @LocalBean
 @Stateless
-public class CityService implements MainService<City> {
+public class CityService implements MainService<City>{
 
 	@Inject
 	private CityRepository cityRepository;
 	
 	@Override
 	public void save(City t) {
+		t.setId(CommonFunctionality.generateID("CTY"));
 		cityRepository.persist(t);
 	}
 
@@ -48,14 +41,12 @@ public class CityService implements MainService<City> {
 
 	@Override
 	public List<City> findAll() {
-		return cityRepository.findAllWithErase()
-				.stream().sorted(Comparator.comparing(City::getId)
-				.reversed()).collect(Collectors.toList());
+		return cityRepository.findAllWithErase();
 	}
 
 	@Override
 	public long findAllCount() {
-		return cityRepository.findAllCountWithErase();
+		return 0;
 	}
 
 	@Override
@@ -63,6 +54,4 @@ public class CityService implements MainService<City> {
 		
 	}
 
-	
-	
 }
