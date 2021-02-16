@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hxo.nhm.web</groupId>
+  <artifactId>NHM-WEB</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <name>Nan Htet Myanmar Web Application</name>
+  <description>Nan Htet Myanmar E-Commerce Shopping &amp; Travel Tour Web Application</description>
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  	<failOnMissingWebXml>false</failOnMissingWebXml>
+  </properties>
+  <dependencies>
+	<dependency>
+	    <groupId>jakarta.platform</groupId>
+	    <artifactId>jakarta.jakartaee-api</artifactId>
+	    <version>8.0.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.primefaces</groupId>
+	    <artifactId>primefaces</artifactId>
+	    <version>6.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>3.17</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi</artifactId>
+	    <version>3.17</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml-schemas</artifactId>
+	    <version>3.17</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.xmlbeans</groupId>
+	    <artifactId>xmlbeans</artifactId>
+	    <version>2.6.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-collections4</artifactId>
+	    <version>4.1</version>
+	</dependency>
+  </dependencies>
+  <build>
+  	<finalName>nhm-web</finalName>
+  </build>
+</project>

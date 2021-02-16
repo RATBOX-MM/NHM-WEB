@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/template/template5.xhtml">
+	
+		<ui:define name="title">
+			<i class="fa fa-user"></i> Admin | <i class="fa fa-shopping-cart"></i> Inventory Shopping
+		</ui:define>
+		<ui:define name="body">		
+			<div class="row">
+				<div class="col-3 mt-2 mb-2">
+					<div class="row">
+						<div class="col-3">
+							<h:commandLink styleClass="btn btn-lg btn-primary">
+								<i class="fa fa-tags" />
+							</h:commandLink>
+						</div>
+						<div class="col-9" style="line-height: 6px;">
+							<h5 class="text-dark">0</h5>
+							<span style="font-size: 14px;" class="text-secondary font-weight-bold">Inventory Tag</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 mt-2 mb-2">
+					<div class="row">
+						<div class="col-3">
+							<h:commandLink styleClass="btn btn-lg btn-primary">
+								<i class="fa fa-sitemap" />
+							</h:commandLink>
+						</div>
+						<div class="col-9" style="line-height: 6px;">
+							<h5 class="text-dark">0</h5>
+							<span style="font-size: 14px;" class="text-secondary font-weight-bold">Inventory Major Category</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 mt-2 mb-2">
+					<div class="row">
+						<div class="col-3">
+							<h:commandLink styleClass="btn btn-lg btn-primary">
+								<i class="fa fa-sitemap" />
+							</h:commandLink>
+						</div>
+						<div class="col-9" style="line-height: 6px;">
+							<h5 class="text-dark">0</h5>
+							<span style="font-size: 14px;" class="text-secondary font-weight-bold">Inventory Minor Category</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-3  mt-2 mb-2">
+					<div class="row">
+						<div class="col-3">
+							<h:commandLink styleClass="btn btn-lg btn-primary">
+								<i class="fa fa-sitemap" />
+							</h:commandLink>
+						</div>
+						<div class="col-9" style="line-height: 6px;">
+							<h5 class="text-dark">0</h5>
+							<span style="font-size: 14px;" class="text-secondary font-weight-bold">Inventory Sub Category</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-3 mt-2 mb-2">
+					<div class="row">
+						<div class="col-3">
+							<h:commandLink styleClass="btn btn-lg btn-primary">
+								<i class="fa fa-cubes" />
+							</h:commandLink>
+						</div>
+						<div class="col-9" style="line-height: 6px;">
+							<h5 class="text-dark">0</h5>
+							<span style="font-size: 14px;" class="text-secondary font-weight-bold">Inventory Item</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	
+	</ui:composition>
+</html>
