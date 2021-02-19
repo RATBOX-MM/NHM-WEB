@@ -28,6 +28,8 @@ import com.rbx.nhm.web.enums.Continent;
 @NamedQueries({
 	@NamedQuery (name = "Country.FindAllCount", query = "select c from Country c where c.erase = false"),
 	@NamedQuery (name = "Country.FindByLongName", query = "select c from Country c where c.erase = false and c.longName = :longName"),
+	@NamedQuery (name = "Country.FindCountByLongName", query = "select count(c) from Country c where c.erase = false and c.longName = :longName"),
+	@NamedQuery (name = "Country.FindCountByShortName", query = "select count(c) from Country c where c.erase = false and c.shortName = :shortName"),
 	@NamedQuery (name = "Country.FindBylongNameWithLike", query = "select c from Country c where c.erase = false and c.longName like :longName"),
 	@NamedQuery (name = "Country.FindByContinent", query = "select c from Country c where c.erase = false and c.continent = :continent"),
 	@NamedQuery (name = "Country.FindByLongNameWithLikeAndContinent", query = "select c from Country c where c.erase = false and c.longName like :longName")
@@ -42,7 +44,7 @@ public class Country implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Continent continent;
 	
-	@NotNull(message = "Long Name is missing!")
+	@NotEmpty(message = "Long Name is missing!")
 	private String longName;
 	
 	@NotEmpty(message = "Short Name is missing!")
@@ -53,6 +55,7 @@ public class Country implements Serializable {
 	@Lob
 	private String description;
 	
+	@NotNull(message = "Status is missing!")
 	@Enumerated(EnumType.STRING)
 	private AdditionalStatus additionalStatus;
 	

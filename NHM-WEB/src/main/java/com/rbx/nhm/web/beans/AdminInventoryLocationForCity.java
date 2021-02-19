@@ -37,6 +37,7 @@ public class AdminInventoryLocationForCity implements Serializable {
 	
 	@PostConstruct
 	public void initialize () {
+		messageColor = "bg-danger";
 		city = new City();
 		cities = cityService.findAll();
 		countries = countryService.findAll();

@@ -2,15 +2,16 @@ package com.rbx.nhm.web.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
-import javax.persistence.ManyToOne;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 
@@ -22,6 +23,11 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "City.FindCountByLongName", query = "select count(c) from City c where c.erase = false and c.longName = :longName"),
+	@NamedQuery(name = "City.FindCountByShortName", query = "select count(c) from City c where c.erase = false and c.shortName = :shortName"),
+	@NamedQuery(name = "City.FindCountByCityCode", query = "select count(c) from City c where c.erase = false and c.cityCode = :cityCode")
+})
 public class City implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,10 +38,8 @@ public class City implements Serializable {
 	@ManyToOne
 	private Country country;
 	
-	@NotNull(message = "Long Name is missing!")
 	private String longName;
 	
-	@NotNull(message = "Short Name is missing!")
 	private String shortName;
 	
 	private String cityCode;

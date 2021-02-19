@@ -1,5 +1,6 @@
 package com.rbx.nhm.web.services;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import com.rbx.nhm.web.enums.Continent;
 import com.rbx.nhm.web.repositories.CountryRepository;
 import com.rbx.nhm.web.utilities.CommonFunctionality;
 import com.rbx.nhm.web.utilities.NHMException;
+import com.rbx.nhm.web.utilities.NHMException.Message;
 
 /**
  * 
@@ -95,13 +97,27 @@ public class CountryService implements MainService<Country> {
 				.stream().sorted(Comparator.comparing(Country::getId)
 				.reversed()).collect(Collectors.toList());
 	}
-
+	
+	public long findCountByLongName (String longName) {
+		HashedMap<String, Object> params = new HashedMap<String, Object>();
+		params.put("longName", longName);
+		return countryRepository.findCountByNamedQuery("Country.FindCountByLongName", params);
+	}
+	
+	public long findCountByShortName (String shortName) {
+		HashedMap<String, Object> params = new HashedMap<String, Object>();
+		params.put("shortName", shortName);
+		return countryRepository.findCountByNamedQuery("Country.FindCountByShortName", params);
+	}
 	@Override
 	public void verify(Country t) {
-		List<Country> countries = findByLongName(t.getLongName());
-		if (countries.size() > 0) {
-			throw new NHMException("MSG-004", "Country Long Name");
-		}
+		List<Message> messages = new ArrayList<Message>();
+		if (findCountByLongName(t.getLongName()) > 0)
+			messages.add(new Message("MSG-004", "Long Name"));
+		if (findCountByShortName(t.getShortName()) > 0)
+			messages.add(new Message("MSG-004", "Short Name"));
+		if (messages.size() > 0)
+			throw new NHMException(messages);
 	}
 	
 }
