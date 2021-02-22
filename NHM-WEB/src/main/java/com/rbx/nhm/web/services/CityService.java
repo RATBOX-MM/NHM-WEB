@@ -68,6 +68,25 @@ public class CityService implements MainService<City>{
 		return cityRepository.findCountByNamedQuery("City.FindCountByCityCode", params);
 	}
 	
+	public List<City> findByCountry (String countryID) {
+		HashedMap<String, Object> params = new HashedMap<String, Object>();
+		params.put("countryID", countryID);
+		return cityRepository.findByNamedQuery("City.FindByCountry", params);
+	}
+	
+	public List<City> findByLongName (String longName) {
+		HashedMap<String, Object> params = new HashedMap<String, Object>();
+		params.put("longName", "%"+longName+"%");
+		return cityRepository.findByNamedQuery("City.FindByLongName", params);
+	} 
+	
+	public List<City> findByCountryAndLongName (String countryID, String longName) {
+		HashedMap<String, Object> params = new HashedMap<String, Object>();
+		params.put("countryID", countryID);
+		params.put("longName", "%"+longName+"%");
+		return cityRepository.findByNamedQuery("City.FindByCountryAndLongName", params);
+	}
+	
 	@Override
 	public long findAllCount() {
 		return 0;

@@ -16,12 +16,14 @@ import javax.persistence.Lob;
  */
 
 @Entity
-public class LogoImage implements Serializable {
+public class AppLogo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
+	
+	private String name;
 
 	@Lob
 	private String image;
@@ -32,7 +34,7 @@ public class LogoImage implements Serializable {
 	@Embedded
 	private Security security;
 	
-	public LogoImage () {
+	public AppLogo () {
 		security = new Security();
 	}
 
@@ -42,6 +44,14 @@ public class LogoImage implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getImage() {

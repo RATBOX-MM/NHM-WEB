@@ -31,7 +31,6 @@ public class MajorCategory implements Serializable {
 	private String id;
 	
 	@Enumerated
-	@NotNull(message = "Category Gender is missing!")
 	private CategoryGender categoryGender;
 	
 	@NotNull(message = "Name is missing!")

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.VehicleStatus;
@@ -28,6 +29,7 @@ public class Vehicle implements Serializable {
 	@Id
 	private String id;
 	
+	@Lob
 	private String image;
 	
 	private String name;

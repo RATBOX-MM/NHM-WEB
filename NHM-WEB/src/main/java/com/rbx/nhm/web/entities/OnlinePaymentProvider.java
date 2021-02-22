@@ -37,7 +37,7 @@ public class OnlinePaymentProvider implements Serializable {
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	private OnlinePaymentProviderType onlinePaymentProvider;
+	private OnlinePaymentProviderType onlinePaymentProviderType;
 	
 	@Enumerated(EnumType.STRING)
 	private AdditionalStatus additionalStatus;
@@ -84,12 +84,12 @@ public class OnlinePaymentProvider implements Serializable {
 		this.description = description;
 	}
 	
-	public OnlinePaymentProviderType getOnlinePaymentProvider() {
-		return onlinePaymentProvider;
+	public OnlinePaymentProviderType getOnlinePaymentProviderType() {
+		return onlinePaymentProviderType;
 	}
 
-	public void setOnlinePaymentProvider(OnlinePaymentProviderType onlinePaymentProvider) {
-		this.onlinePaymentProvider = onlinePaymentProvider;
+	public void setOnlinePaymentProviderType(OnlinePaymentProviderType onlinePaymentProviderType) {
+		this.onlinePaymentProviderType = onlinePaymentProviderType;
 	}
 
 	public AdditionalStatus getAdditionalStatus() {

@@ -26,7 +26,10 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
 @NamedQueries({
 	@NamedQuery(name = "City.FindCountByLongName", query = "select count(c) from City c where c.erase = false and c.longName = :longName"),
 	@NamedQuery(name = "City.FindCountByShortName", query = "select count(c) from City c where c.erase = false and c.shortName = :shortName"),
-	@NamedQuery(name = "City.FindCountByCityCode", query = "select count(c) from City c where c.erase = false and c.cityCode = :cityCode")
+	@NamedQuery(name = "City.FindCountByCityCode", query = "select count(c) from City c where c.erase = false and c.cityCode = :cityCode"),
+	@NamedQuery(name = "City.FindByCountry", query = "select c from City c  where c.erase = false and c.country.id = :countryID"),
+	@NamedQuery(name = "City.FindByLongName", query = "select c from City c where c.erase = false and c.longName like :longName"),
+	@NamedQuery(name = "City.FindByCountryAndLongName", query = "select c from City c where c.erase = false and c.country.id = :countryID and c.longName like :longName"),
 })
 public class City implements Serializable {
 

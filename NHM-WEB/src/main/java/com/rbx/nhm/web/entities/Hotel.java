@@ -29,6 +29,9 @@ public class Hotel implements Serializable {
 	@Id
 	private String id;
 	
+	@Lob
+	private String image;
+	
 	private String name;
 	
 	@Enumerated(EnumType.STRING)
@@ -59,6 +62,14 @@ public class Hotel implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getName() {

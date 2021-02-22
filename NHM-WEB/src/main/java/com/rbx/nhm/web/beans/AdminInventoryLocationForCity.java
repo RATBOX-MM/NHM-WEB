@@ -1,6 +1,7 @@
 package com.rbx.nhm.web.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,10 @@ public class AdminInventoryLocationForCity implements Serializable {
 	
 	private City city;
 	
+	private String longName;
+	
+	private Country country;
+	
 	private List<City> cities;
 	
 	private List<Country> countries;
@@ -39,6 +44,7 @@ public class AdminInventoryLocationForCity implements Serializable {
 	public void initialize () {
 		messageColor = "bg-danger";
 		city = new City();
+		country = new Country();
 		cities = cityService.findAll();
 		countries = countryService.findAll();
 	}
@@ -69,6 +75,26 @@ public class AdminInventoryLocationForCity implements Serializable {
 		setMessageColor("bg-danger");
 		throw new NHMException("MSG-003", "City");
 	}
+	
+	@MessageHandler
+	public void search () {
+		if (country == null && longName.isEmpty()) {
+			throw new NHMException("MSG-006");
+		}
+		cities = new ArrayList<City>();
+		if (country != null && !longName.isEmpty()) {
+			System.out.println("1");
+			cities = cityService.findByCountryAndLongName(country.getId(), longName);
+		} else if (country != null) {
+			System.out.println("2");
+			cities = cityService.findByCountry(country.getId());
+		} else {
+			System.out.println("3");
+			cities = cityService.findByLongName(longName);
+		}
+		setMessageColor("bg-success");
+		throw new NHMException("MSG-007", cities.size());
+	}
 
 	public String getMessageColor() {
 		return messageColor;
@@ -84,6 +110,22 @@ public class AdminInventoryLocationForCity implements Serializable {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public String getLongName() {
+		return longName;
+	}
+
+	public void setLongName(String longName) {
+		this.longName = longName;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	public List<City> getCities() {
