@@ -5,6 +5,7 @@ import javax.inject.Named;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.Continent;
+import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
 
 public class EnumProducer {
 	
@@ -18,6 +19,12 @@ public class EnumProducer {
 	@Produces
 	public AdditionalStatus [] additionalStatuses () {
 		return AdditionalStatus.values();
+	}
+	
+	@Named
+	@Produces
+	public OnlinePaymentProviderType [] onlinePaymentProviderTypes () {
+		return OnlinePaymentProviderType.values();
 	}
 	
 }

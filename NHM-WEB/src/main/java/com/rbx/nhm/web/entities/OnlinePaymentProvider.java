@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
@@ -21,6 +23,13 @@ import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
  */
 
 @Entity
+/*
+@NamedQueries({
+	@NamedQuery(name = "OnlinePaymentProvider.FindCountByName", query = "select count(o) from OnlinePaymentProvider o where o.erase = false and o.Name = :name"),
+	@NamedQuery(name = "OnlinePaymentProvider.FindByName", query = "select o from OnlinePaymentProvider o where o.erase = false and o.Name like :name"),
+	//@NamedQuery(name = "OnlinePaymentProvider.FindByNameAndType", query = "select c from City c where c.erase = false and c.country.id = :countryID and c.longName like :longName"),
+})
+*/
 public class OnlinePaymentProvider implements Serializable {
 
 	private static final long serialVersionUID = 1L;

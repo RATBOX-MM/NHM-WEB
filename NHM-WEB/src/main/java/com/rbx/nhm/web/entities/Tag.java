@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
@@ -21,6 +23,10 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Tag.FindCountByName", query = "select count(t) from Tag t where t.erase = false and t.name = :name"),
+	@NamedQuery(name = "Tag.FindByName", query = "select t from Tag t where t.erase = false and t.name like :name"),
+})
 public class Tag implements Serializable {
 
 	private static final long serialVersionUID = 1L;
