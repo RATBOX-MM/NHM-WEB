@@ -24,6 +24,12 @@ import javax.persistence.Enumerated;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "MajorCategory.FindByGender" ,query = "select c from MajorCategory c where c.erase=false and c.categoryGender = :gender"),
+	@NamedQuery(name = "MajorCategory.FindByStatus", query = "select c from MajorCategory c where c.erase=false and c.additionalStatus = :status"),
+	@NamedQuery(name = "MajorCategory.FindByName",query = "select c from MajorCategory c where c.erase=false and c.name like :name"),
+	@NamedQuery(name = "MajorCategory.FindByGenderandStatusandName",query = "select c from MajorCategory c where c.erase=false and c.categoryGender = :gender and c.additionalStatus= :status and c.name like :name")
+})
 public class MajorCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 

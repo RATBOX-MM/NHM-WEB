@@ -1,7 +1,7 @@
 package com.rbx.nhm.web.beans;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.rbx.nhm.web.entities.MajorCategory;
-
+import com.rbx.nhm.web.enums.AdditionalStatus;
+import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.interceptors.MessageHandler;
 import com.rbx.nhm.web.services.MajorCategoryService;
 import com.rbx.nhm.web.utilities.NHMException;
@@ -33,8 +34,12 @@ public class AdminInventoryMajorCategoryBean implements Serializable {
 	
 	
 	private String name;
-
 	
+	private CategoryGender gender;
+	
+	private AdditionalStatus status;
+
+
 	
 
 	private MajorCategory majorCategory;
@@ -89,7 +94,30 @@ public class AdminInventoryMajorCategoryBean implements Serializable {
 
 	@MessageHandler
 	public void search() {
-		
+		System.out.println("1");
+		if(gender==null && name.isEmpty() && status==null) {
+			System.out.println("2");
+			throw new NHMException("MSG-006");
+		}
+		majorCategories=new ArrayList<MajorCategory>();
+		if(gender != null && !name.isEmpty() && status !=null) {
+			System.out.println("3");
+			majorCategories=majorCategoryService.findbyGenderandStatusandName(gender, name, status);
+			
+		}else if (gender !=null) {
+			System.out.println("4");
+			majorCategories=majorCategoryService.findbyGender(gender);
+			
+		}else if (!name.isEmpty()) {
+			System.out.println("5");
+			majorCategories=majorCategoryService.findbyName(name);
+			
+		}else {
+			System.out.println("6");
+			majorCategories=majorCategoryService.findbyStatus(status);
+		}
+		setMessageColor("bg-success");
+		throw new NHMException("MSG-007",majorCategories.size());
 	
 	}
 		
@@ -129,6 +157,25 @@ public class AdminInventoryMajorCategoryBean implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public CategoryGender getGender() {
+		return gender;
+	}
+
+
+	public void setGender(CategoryGender gender) {
+		this.gender = gender;
+	}
+
+
+	public AdditionalStatus getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(AdditionalStatus status) {
+		this.status = status;
 	}
 	
 

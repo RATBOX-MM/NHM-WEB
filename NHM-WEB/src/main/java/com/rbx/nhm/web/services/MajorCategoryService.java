@@ -11,6 +11,8 @@ import javax.inject.Inject;
 import org.apache.commons.collections4.map.HashedMap;
 
 import com.rbx.nhm.web.entities.MajorCategory;
+import com.rbx.nhm.web.enums.AdditionalStatus;
+import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.repositories.MajorCategoryRepository;
 import com.rbx.nhm.web.utilities.CommonFunctionality;
 import com.rbx.nhm.web.utilities.NHMException;
@@ -67,6 +69,34 @@ public class MajorCategoryService  implements MainService<MajorCategory>{
 		return 0;
 	}
 	
+	public List<MajorCategory> findbyGender(CategoryGender gender){
+		HashedMap<String, Object>parms=new HashedMap<String, Object>();
+		parms.put("gender", gender);
+		return majorcategoryRepository.findByNamedQuery("MajorCategory.FindByGender", parms);
+		
+	}
+	public List<MajorCategory> findbyStatus(AdditionalStatus status){
+		HashedMap<String, Object>parms=new HashedMap<String, Object>();
+		parms.put("status", status);
+		return majorcategoryRepository.findByNamedQuery("MajorCategory.FindByStatus", parms);
+		
+	}
+	
+	public List<MajorCategory> findbyName(String name){
+		HashedMap<String, Object>parms=new HashedMap<String, Object>();
+		parms.put("name","%"+name+"%");
+		return majorcategoryRepository.findByNamedQuery("MajorCategory.FindByName", parms);
+		
+	}
+	
+	public List<MajorCategory> findbyGenderandStatusandName(CategoryGender gender,String name,AdditionalStatus status){
+		HashedMap<String, Object>parms=new HashedMap<String, Object>();
+		parms.put("gender", gender);
+		parms.put("name","%"+name+"%");
+		parms.put("status", status);
+		return majorcategoryRepository.findByNamedQuery("MajorCategory.FindByGenderandStatusandName", parms);
+		
+	}
 
 	@Override
 	public void verify(MajorCategory t) {

@@ -54,36 +54,41 @@
 				<div class="col-12 mb-2">
 					<span class="font-weight-bold" style="font-size: 12px;">Search Box</span>
 				</div>
-				<div class="form-group col-sm-4 col-12">
-					<h:selectOneMenu value="#{adminInventoryMajorCategoryBean.majorCategory.categoryGender}" styleClass="form-control" style="height:35px;">
+				
+				<div class="form-group col-sm-2 col-12">
+					<h:selectOneMenu value="#{adminInventoryMajorCategoryBean.gender}" styleClass="form-control" style="height:34px;">
 						<f:selectItem itemLabel="Choose Gender" itemValue="#{null}" />
-						<f:selectItems value="#{categoryGenders}" var="c" itemValue="#{c}" itemLabel="#{c}"></f:selectItems>
+						<f:selectItems value="#{categoryGenders}" var="t" itemValue="#{t}" itemLabel="#{t}"></f:selectItems>
+					</h:selectOneMenu>
+				</div>
+				 
+				<div class="form-group col-sm-3 col-12">
+					<h:inputText value="#{adminInventoryMinorCategoryBean.name}" p:placeholder="Name" styleClass="form-control" style="height:35px;" />
+				</div>
+				
+				<div class="form-group col-sm-2 col-12">
+					<h:selectOneMenu value="#{adminInventoryMajorCategoryBean.status}" styleClass="form-control" style="height:34px;">
+						<f:selectItem itemLabel="Choose Status" itemValue="#{null}" />
+						<f:selectItems value="#{additionalStatuses}" var="a" itemValue="#{a}" itemLabel="#{a}"></f:selectItems>
 					</h:selectOneMenu>
 				</div>
 				
-				<div class="form-group col-sm-8 col-12">
-					<h:inputText value="#{adminInventoryMajorCategoryBean.majorCategory.name}" p:placeholder="Name" styleClass="form-control" style="height:35px;" />
-				</div>
-			
-				<div class="form-group col-sm-4 col-12">
-					<h:selectOneMenu value="#{adminInventoryMajorCategoryBean.majorCategory.additionalStatus}" styleClass="form-control" style="height:35px;">
-						<f:selectItem itemLabel="Choose Status" itemValue="#{null}" />
-						<f:selectItems value="#{additionalStatuses}" var="c" itemValue="#{c}" itemLabel="#{c}"></f:selectItems>
-					</h:selectOneMenu>
-				</div>
-				<div class="form-group col-sm-4  col-12">
-						<h:commandLink action="#{adminInventoryMajorCategoryBean.search()}" styleClass="form-control btn btn-sm btn-outline-success" style="height:35px; font-size: 14px;">
+				<div class="col-sm-2 col-12">
+					<div class="form-group">
+						<h:commandLink action="#{adminInventoryMajorCategoryBean.search()}" styleClass="form-control btn btn-sm btn-outline-success" style="height:34px; font-size: 14px;">
 							<i class="fa fa-search" /> Search
 						</h:commandLink>
+					</div>
 				</div>
-				<div class="form-group col-sm-4 col-12">
-					
-						<h:commandLink action="#{adminInventoryMajorCategoryBean.intialize()}" styleClass="form-control btn btn-sm btn-outline-danger" style="height:35px; font-size: 14px;">
+				<div class="col-sm-2 col-12">
+					<div class="form-group">
+						<h:commandLink action="#{adminInventoryMajorCategoryBean.intialize()}" styleClass="form-control btn btn-sm btn-outline-danger" style="height:34px; font-size: 14px;">
 							<i class="fa fa-history" /> Refresh
 						</h:commandLink>
-					
+					</div>
 				</div>
-			</div> 
+				 
+			</div>
 			 	
 		
 			 
