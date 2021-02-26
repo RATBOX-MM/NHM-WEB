@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.CategoryGender;
@@ -24,7 +25,6 @@ import javax.persistence.Enumerated;
 
 @Entity
 public class MajorCategory implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,15 +32,13 @@ public class MajorCategory implements Serializable {
 	
 	@Enumerated
 	private CategoryGender categoryGender;
-	
-	@NotNull(message = "Name is missing!")
+
 	private String name;
 	
 	@Lob
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Status is missing!")
 	private AdditionalStatus additionalStatus;
 	
 	@Column(columnDefinition = "tinyint(1) default 1")

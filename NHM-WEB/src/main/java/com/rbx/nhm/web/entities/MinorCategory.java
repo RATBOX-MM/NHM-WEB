@@ -11,7 +11,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 
@@ -23,6 +24,13 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "MinorCategory.FindCountByName", query = "select count(c) from MinorCategory c  where c.erase=false and c.name = :name"),
+	@NamedQuery(name = "MinorCategory.FindByMajor", query = "select c from MinorCategory c where c.erase=false and c.majorCategory.id = :majorID"),
+	@NamedQuery(name = "MinorCategory.FindByName",query = "select c from MinorCategory c where c.erase=false and c.name like :name"),
+	@NamedQuery(name = "MinorCategory.FindByStatus", query = "select c from MinorCategory c where c.erase=false and c.additionalStatus = :status"),
+	@NamedQuery(name = "MinorCategory.FindByMajorandNameandStatus",query = "select c from MinorCategory c where c.erase=false and c.majorCategory.id = :majorID and c.name like :name and c.additionalStatus = :status")
+})
 public class MinorCategory implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,17 +39,15 @@ public class MinorCategory implements Serializable {
 	private String id;
 	
 	@ManyToOne
-	@NotNull(message = "Major Category is missing!")
 	private MajorCategory majorCategory;
 	
-	@NotNull(message = "Name is missing!")
+	
 	private String name;
 	
 	@Lob
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Status is missing!")
 	private AdditionalStatus additionalStatus;
 	
 	@Column(columnDefinition = "tinyint(1) default 1")

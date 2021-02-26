@@ -4,6 +4,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
+import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.enums.Continent;
 
 public class EnumProducer {
@@ -18,6 +19,13 @@ public class EnumProducer {
 	@Produces
 	public AdditionalStatus [] additionalStatuses () {
 		return AdditionalStatus.values();
+	}
+	
+	
+	@Named
+	@Produces
+	public CategoryGender[]categoryGenders(){
+		return CategoryGender.values();
 	}
 	
 }
