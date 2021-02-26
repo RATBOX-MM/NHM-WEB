@@ -68,6 +68,7 @@ public class AdminInventoryOnlinePaymentProviderBean implements Serializable {
 		}
 	}
 
+	
 	public void update (OnlinePaymentProvider onlinePaymentProvider) {
 		this.onlinePaymentProvider = onlinePaymentProvider;
 	}

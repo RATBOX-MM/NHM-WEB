@@ -21,6 +21,7 @@ public class EnumProducer {
 		return AdditionalStatus.values();
 	}
 	
+	
 	@Named
 	@Produces
 	public OnlinePaymentProviderType [] onlinePaymentProviderTypes () {

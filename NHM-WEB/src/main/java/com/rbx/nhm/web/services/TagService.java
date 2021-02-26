@@ -71,6 +71,7 @@ public class TagService implements MainService<Tag>{
 		params.put("name", "%"+name+"%");
 		return tagRepository.findByNamedQuery("Tag.FindByName", params);
 	} 
+	
 
 	@Override
 	public void verify(Tag t) {

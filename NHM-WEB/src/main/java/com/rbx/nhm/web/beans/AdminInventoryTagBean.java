@@ -84,6 +84,7 @@ public class AdminInventoryTagBean implements Serializable {
 		}
 	}
 	
+	
 	public String getMessageColor() {
 		return messageColor;
 	}

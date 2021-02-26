@@ -24,6 +24,7 @@ import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
 
 @Entity
 /*
+ * 
 @NamedQueries({
 	@NamedQuery(name = "OnlinePaymentProvider.FindCountByName", query = "select count(o) from OnlinePaymentProvider o where o.erase = false and o.Name = :name"),
 	@NamedQuery(name = "OnlinePaymentProvider.FindByName", query = "select o from OnlinePaymentProvider o where o.erase = false and o.Name like :name"),
