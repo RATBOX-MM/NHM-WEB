@@ -54,12 +54,12 @@ public class AdminInventoryLocationForCity implements Serializable {
 		if (city.getId() == null) {
 			cityService.save(city);
 			initialize();
-			setMessageColor("bg-success");
+			setMessageColor("bg-danger");
 			throw new NHMException("MSG-001", "City");
 		} else {
 			cityService.update(city);
 			initialize();
-			setMessageColor("bg-success");
+			setMessageColor("bg-danger");
 			throw new NHMException("MSG-002", "City");
 		}
 	}
