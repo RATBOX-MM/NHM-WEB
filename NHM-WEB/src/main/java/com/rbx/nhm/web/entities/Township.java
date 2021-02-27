@@ -1,7 +1,6 @@
 package com.rbx.nhm.web.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Entity;
@@ -9,9 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EnumType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
-
 import com.rbx.nhm.web.enums.AdditionalStatus;
 
 /**
@@ -22,6 +21,14 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Township.FindCountByLongName", query = "select count(c) from Township c where c.erase = false and c.longName = :longName"),
+	@NamedQuery(name = "Township.FindCountByShortName", query = "select count(c) from Township c where c.erase = false and c.shortName = :shortName"),
+	@NamedQuery(name = "Township.FindCountByTownshipCode", query = "select count(c) from Township c where c.erase = false and c.townshipCode = :townshipCode"),
+	@NamedQuery(name = "Township.FindByCity", query = "select c from Township c  where c.erase = false and c.city.id = :cityID"),
+	@NamedQuery(name = "Township.FindByLongName", query = "select c from Township c where c.erase = false and c.longName like :longName"),
+	@NamedQuery(name = "Township.FindByCityAndLongName", query = "select c from Township c where c.erase = false and c.city.id = :cityID and c.longName like :longName"),
+})
 public class Township implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,10 +39,8 @@ public class Township implements Serializable {
 	@ManyToOne
 	private City city;
 	
-	@NotNull(message = "Long Name is missing!")
 	private String longName;
 	
-	@NotNull(message = "Short Name is missing!")
 	private String shortName;
 	
 	private String townshipCode;
