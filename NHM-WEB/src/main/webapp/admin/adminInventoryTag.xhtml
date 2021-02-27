@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/template/template5.xhtml">
+		<ui:define name="title">
+			<i class="fa fa-user"></i> Admin | <i class="fa fa-map-marked"></i> Inventory Tag
+		</ui:define>
+		<ui:define name="body">
+			<h:messages id="localMessage" styleClass="#{adminInventoryTagBean.messageColor} pt-2 pb-2 pl-5 text-light" showDetail="true" showSummary="false" style="width: 100%; font-family: Arial; font-size: 12px;" />
+			<h:form>
+			<div class="container-fluid">
+				<div class="row shadow pt-1 rounded bg-light mb-3 mt-3">
+				<div class="col-12 mb-2">
+					<span class="font-weight-bold" style="font-size: 12px;">Tag Inventory</span>
+				</div>
+				<div class="form-group col-sm-4 col-12">
+					<h:inputText value="#{adminInventoryTagBean.tag.name}" p:placeholder="Name" styleClass="form-control" style="height:30px;" />
+				</div>
+				<div class="form-group col-sm-4 col-12">
+					<h:selectOneMenu value="#{adminInventoryTagBean.tag.additionalStatus}" styleClass="form-control" style="height:30px;">
+						<f:selectItem itemLabel="Choose Status" itemValue="" />
+						<f:selectItems value="#{additionalStatuses}" var="a" itemValue="#{a}" itemLabel="#{a}"></f:selectItems>
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group col-sm-4 col-12">
+					<h:commandLink action="#{adminInventoryTagBean.save()}" styleClass="form-control btn btn-sm btn-outline-primary" style="height:30px; font-size: 12px;">
+						<i class="fa fa-check" /> Save
+					</h:commandLink>
+				</div>
+			</div>
+			<div class="row shadow pt-1 rounded bg-light mt-3 mb-3">
+				<div class="col-12 mb-2">
+					<span class="font-weight-bold" style="font-size: 12px;">Search Box</span>
+				</div>
+				<div class="col-sm-4 col-12">
+					<h:inputText value="#{adminInventoryTagBean.name}" p:placeholder="Name" styleClass="form-control" style="height:30px;" />
+				</div>
+				<div class="col-sm-4 col-12">
+					<div class="form-group">
+						<h:commandLink action="#{adminInventoryTagBean.search()}" styleClass="form-control btn btn-sm btn-outline-success" style="height:30px; font-size: 12px;">
+							<i class="fa fa-search" /> Search
+						</h:commandLink>
+					</div>
+				</div>
+				<div class="col-sm-4 col-12">
+					<div class="form-group">
+						<h:commandLink action="#{adminInventoryTagBean.initialize()}" styleClass="form-control btn btn-sm btn-outline-danger" style="height:30px; font-size: 12px;">
+							<i class="fa fa-history" /> Refresh
+						</h:commandLink>
+					</div>
+				</div>
+				 
+			</div>
+			<div class="row shadow pt-1 rounded bg-light mt-3 mb-3">
+				<div class="col-12 mb-2">
+					<span class="font-weight-bold" style="font-size: 12px;">Tag List</span>
+				</div>
+				
+				<ui:repeat value="#{adminInventoryTagBean.tages}" var="t">
+				<div class="col-12 pb-2 mt-2 mb-2 border-bottom" style="font-size: 12px; line-height: 18px;">
+					<div class="row">
+						<div class="col-12">
+							ID : <span class="text-dark font-weight-bold" style="font-size: 12px;">#{t.id}</span>
+						</div>
+						<div class="col-12">
+							<div class="row">
+								<div class="col-4">
+									Name : <span class="text-dark" style="font-size: 14px;"> #{t.name} </span> <br />
+								</div>
+								<div class="col-3">
+									Status : <span class="#{adminInventoryTagBean.getStatusColor(t.additionalStatus)}" style="font-size: 14px;"> #{t.additionalStatus} </span> <br />
+								</div>
+								<div class="col-3">
+									Time : <span class="text-dark" style="font-size: 12px;">#{t.security.updatedTime}</span> <br />
+									Date : <span class="text-dark" style="font-size: 12px;">#{t.security.updatedDate}</span> <br />
+									Updater : <span class="text-dark" style="font-size: 12px;">Administrator</span>
+								</div>
+								<div class="col-2">
+									<h:commandLink action="#{adminInventoryTagBean.update(t)}" styleClass="form-control btn btn-sm btn-outline-primary mb-1" style="height:30px; font-size: 12px;">
+										<i class="fa fa-pen" /> Update
+									</h:commandLink>
+									<h:commandLink action="#{adminInventoryTagBean.delete(t)}" styleClass="form-control btn btn-sm btn-outline-danger" style="height:30px; font-size: 12px;">
+										<i class="fa fa-trash" /> Delete
+									</h:commandLink>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</ui:repeat>
+			</div>			
+			</div>
+					
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

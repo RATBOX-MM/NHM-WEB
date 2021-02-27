@@ -9,7 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 
@@ -21,6 +22,10 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Tag.FindCountByName", query = "select count(t) from Tag t where t.erase = false and t.name = :name"),
+	@NamedQuery(name = "Tag.FindByName", query = "select t from Tag t where t.erase = false and t.name like :name"),
+})
 public class Tag implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,11 +34,9 @@ public class Tag implements Serializable {
 	private String id;
 	
 	@Lob
-	@NotNull(message = "Name is missing!")
 	private String name;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Status is missing!")
 	private AdditionalStatus additionalStatus;
 	
 	@Column(columnDefinition = "tinyint(1) default 1")

@@ -2,10 +2,10 @@ package com.rbx.nhm.web.producers;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
-
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.enums.Continent;
+import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
 
 public class EnumProducer {
 	
@@ -27,5 +27,13 @@ public class EnumProducer {
 	public CategoryGender[]categoryGenders(){
 		return CategoryGender.values();
 	}
+	
+	@Named
+	@Produces
+	public OnlinePaymentProviderType[] onlinePaymentProviderTypes(){
+		return OnlinePaymentProviderType.values();
+	}
+	
+	
 	
 }
