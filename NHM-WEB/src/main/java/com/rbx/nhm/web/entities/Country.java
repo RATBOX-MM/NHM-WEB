@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.Continent;
@@ -32,7 +31,7 @@ import com.rbx.nhm.web.enums.Continent;
 	@NamedQuery (name = "Country.FindCountByShortName", query = "select count(c) from Country c where c.erase = false and c.shortName = :shortName"),
 	@NamedQuery (name = "Country.FindBylongNameWithLike", query = "select c from Country c where c.erase = false and c.longName like :longName"),
 	@NamedQuery (name = "Country.FindByContinent", query = "select c from Country c where c.erase = false and c.continent = :continent"),
-	@NamedQuery (name = "Country.FindByLongNameWithLikeAndContinent", query = "select c from Country c where c.erase = false and c.longName like :longName")
+	@NamedQuery (name = "Country.FindByLongNameWithLikeAndContinent", query = "select c from Country c where c.erase = false and c.longName like :longName and c.continent = :continent ")
 })
 public class Country implements Serializable {
 
@@ -44,10 +43,10 @@ public class Country implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Continent continent;
 	
-	@NotEmpty(message = "Long Name is missing!")
+	
 	private String longName;
 	
-	@NotEmpty(message = "Short Name is missing!")
+	
 	private String shortName;
 	
 	private String countryCode;
@@ -55,7 +54,7 @@ public class Country implements Serializable {
 	@Lob
 	private String description;
 	
-	@NotNull(message = "Status is missing!")
+	
 	@Enumerated(EnumType.STRING)
 	private AdditionalStatus additionalStatus;
 	

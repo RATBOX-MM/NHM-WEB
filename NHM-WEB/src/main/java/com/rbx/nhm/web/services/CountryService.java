@@ -75,7 +75,7 @@ public class CountryService implements MainService<Country> {
 	
 	public List<Country> findByLongNameWithLike (String longName) {
 		HashedMap<String, Object> params = new HashedMap<String, Object>();
-		params.put("longName", longName);
+		params.put("longName","%"+ longName+"%");
 		return countryRepository.findByNamedQuery("Country.FindBylongNameWithLike", params)
 				.stream().sorted(Comparator.comparing(Country::getId)
 				.reversed()).collect(Collectors.toList());
@@ -91,7 +91,7 @@ public class CountryService implements MainService<Country> {
 	
 	public List<Country> findByLongNameWithLikeAndContinent (String longName, Continent continent) {
 		HashedMap<String, Object> params = new HashedMap<String, Object>();
-		params.put("longName", longName);
+		params.put("longName", "%"+ longName+"%");
 		params.put("continent", continent);
 		return countryRepository.findByNamedQuery("Country.FindByLongNameWithLikeAndContinent", params)
 				.stream().sorted(Comparator.comparing(Country::getId)
@@ -116,6 +116,21 @@ public class CountryService implements MainService<Country> {
 			messages.add(new Message("MSG-004", "Long Name"));
 		if (findCountByShortName(t.getShortName()) > 0)
 			messages.add(new Message("MSG-004", "Short Name"));
+		if (t.getCountryCode() == null || t.getCountryCode().isEmpty()) {
+			messages.add(new Message("MSG-005", "Postal Code"));
+		}
+		if (t.getLongName() == null || t.getLongName().isEmpty()) {
+			messages.add(new Message("MSG-005", "Long Name"));
+		}
+		if (t.getShortName() == null || t.getShortName().isEmpty()) {
+			messages.add(new Message("MSG-005", "Short Name"));
+		}
+		if (t.getAdditionalStatus() == null) {
+			messages.add(new Message("MSG-005", "Status"));
+		}
+		if (t.getContinent() == null) {
+			messages.add(new Message("MSG-005", "Continent"));
+		}
 		if (messages.size() > 0)
 			throw new NHMException(messages);
 	}
