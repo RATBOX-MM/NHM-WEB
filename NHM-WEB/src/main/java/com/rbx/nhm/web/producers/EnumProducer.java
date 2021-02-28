@@ -6,6 +6,8 @@ import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.enums.Continent;
 import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
+import com.rbx.nhm.web.enums.VehicleStatus;
+import com.rbx.nhm.web.enums.VehicleType;
 
 public class EnumProducer {
 	
@@ -33,6 +35,19 @@ public class EnumProducer {
 	public OnlinePaymentProviderType[] onlinePaymentProviderTypes(){
 		return OnlinePaymentProviderType.values();
 	}
+	
+	@Named
+	@Produces
+	public VehicleType[] vehicleType(){
+		return VehicleType.values();
+	}
+	
+	@Named
+	@Produces
+	public VehicleStatus[] vehicleStatus(){
+		return VehicleStatus.values();
+	}
+	
 	
 	
 	

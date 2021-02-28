@@ -1,6 +1,7 @@
 package com.rbx.nhm.web.entities;
 
 import java.io.Serializable;
+import javax.persistence.NamedQueries;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,6 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.VehicleStatus;
@@ -22,6 +24,19 @@ import com.rbx.nhm.web.enums.VehicleType;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Vehicle.FindCountByName", query = "select count (v) from Vehicle v where v.erase = false and v.name = :name"),
+	@NamedQuery(name = "Vehicle.FindCountByPlateNumber", query = "select count (v) from Vehicle v where v.erase=false and v.plateNumber=:plateNumber"),
+	@NamedQuery(name = "Vehicle.FindByName", query = "select v from Vehicle v where v.erase = false and v.name like  :name"),
+	@NamedQuery(name = "Vehicle.FindByPlateNumber", query = "select v from Vehicle v where v.erase = false and v.plateNumber = :plateNumber"),
+	@NamedQuery(name = "Vehicle.FindByNameAndPlateNumber", query = "select v from Vehicle v where v.erase=false and v.name like :name and v.plateNumber = :plateNumber"),
+	@NamedQuery(name = "Vehicle.FindByVehicleType", query = "select v from Vehicle v where v.erase=false and v.vehicleType = :vehicleType"),
+	@NamedQuery(name = "Vehicle.FindByVehicleStatus", query = "select v from Vehicle v where v.erase=false and v.vehicleStatus = :vehicleStatus"),
+	@NamedQuery(name = "Vehicle.FindByNameAndPlateNumberAndVehicleType", query = "select v from Vehicle v where v.erase=false and v.name like :name and v.plateNumber = :plateNumber and v.vehicleType = :vehicleType"),
+	@NamedQuery(name = "Vehicle.FindByNameAndPlateNumberAndVehicleTpyeAndVehicleStatus", query = "select v from Vehicle v where v.erase=false and v.name like :name and v.plateNumber = :plateNumber and v.vehicleType = :vehicleType and v.vehicleStatus = :vehicleStatus"),
+	@NamedQuery(name = "Vehicle.FindByAdditionalStatus", query = "select v from Vehicle v where v.erase=false and v.additionalStatus = :additionStatus"),
+	@NamedQuery(name = "Vehicle.FindByNameAndPlateNumberAndVehicleTpyeAndVehicleStatusAndAdditionalStatus", query = "select v from Vehicle v where v.erase=false and v.name like :name and v.plateNumber= :plateNumber and v.vehicleType= :vehicleType and v.vehicleStatus= :vehicleStatus and v.additionalStatus= :additionalStatus"),
+})
 public class Vehicle implements Serializable {
 
 	private static final long serialVersionUID = 1L;

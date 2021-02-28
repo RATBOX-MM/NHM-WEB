@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * 
@@ -13,8 +15,12 @@ import javax.persistence.Id;
  * @since 06-02-2021
  *
  */
-
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "AppColor.FindCountByAppColor", query = "select count(a) from AppColor a where a.erase=false and a.colorCode = :appcolor"),
+	@NamedQuery(name = "AppColor.FindByAppColor", query = "select a from AppColor a where a.erase= false and a.colorCode like :appcolor"),
+})
+
 public class AppColor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
