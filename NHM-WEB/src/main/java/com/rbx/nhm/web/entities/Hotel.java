@@ -10,9 +10,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.HotelStatus;
+
 
 /**
  * 
@@ -22,6 +25,12 @@ import com.rbx.nhm.web.enums.HotelStatus;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Hotel.FindCountByName", query = "select count(c) from Hotel c where c.erase = false and c.name = :name"),
+	@NamedQuery(name = "Hotel.FindByAddress", query = "select c from Hotel c  where c.erase = false and c.address.id = :addressID"),
+	@NamedQuery(name = "Hotel.FindByName", query = "select c from Hotel c where c.erase = false and c.name like :name"),
+	@NamedQuery(name = "Hotel.FindByHotelAndAddress", query = "select c from Hotel c where c.erase = false and c.address.id = :addressID and c.name like :name"),
+})
 public class Hotel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -56,7 +65,7 @@ public class Hotel implements Serializable {
 		security = new Security();
 	}
 
-	public String getId() {
+	public String getId( ) {
 		return id;
 	}
 

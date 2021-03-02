@@ -2,12 +2,11 @@ package com.rbx.nhm.web.producers;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
+
 import com.rbx.nhm.web.enums.AdditionalStatus;
 import com.rbx.nhm.web.enums.CategoryGender;
 import com.rbx.nhm.web.enums.Continent;
-import com.rbx.nhm.web.enums.OnlinePaymentProviderType;
-import com.rbx.nhm.web.enums.VehicleStatus;
-import com.rbx.nhm.web.enums.VehicleType;
+import com.rbx.nhm.web.enums.HotelStatus;
 
 public class EnumProducer {
 	
@@ -29,26 +28,10 @@ public class EnumProducer {
 	public CategoryGender[]categoryGenders(){
 		return CategoryGender.values();
 	}
-	
 	@Named
 	@Produces
-	public OnlinePaymentProviderType[] onlinePaymentProviderTypes(){
-		return OnlinePaymentProviderType.values();
+	public HotelStatus[] hotelStatuses() {
+		return HotelStatus.values();
 	}
-	
-	@Named
-	@Produces
-	public VehicleType[] vehicleType(){
-		return VehicleType.values();
-	}
-	
-	@Named
-	@Produces
-	public VehicleStatus[] vehicleStatus(){
-		return VehicleStatus.values();
-	}
-	
-	
-	
 	
 }
