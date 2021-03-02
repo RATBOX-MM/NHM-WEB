@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * 
@@ -17,6 +19,13 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Address.FindByID", query = "select c from Address c where c.erase = false and c.id = :addressID"),
+	@NamedQuery(name = "Address.FindByCountry", query = "select c from Address c  where c.erase = false and c.country.id = :countryID"),
+	@NamedQuery(name = "Address.FindByCity", query = "select c from Address c  where c.erase = false and c.city = :cityID"),
+	@NamedQuery(name = "Address.FindByTownship", query = "select c from Address c  where c.erase = false and c.township = :townshipID"),
+	@NamedQuery(name = "Address.FindCountByAddressInfo", query = "select count(c) from Address c where c.erase = false and c.addressInfo = :addressInfo"),
+})
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;
