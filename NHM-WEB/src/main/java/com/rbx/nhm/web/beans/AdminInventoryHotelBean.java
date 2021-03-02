@@ -138,16 +138,16 @@ public class AdminInventoryHotelBean implements Serializable {
 		}
 		hotels = new ArrayList<Hotel>();
 		if (address != null && !name.isEmpty()) {
-			System.out.println("1"+address.getId());
+			System.out.println("1");
 			hotels = hotelService.findByAddressAndLongName(address.getId(), name);
 		} else if (address != null) {
-			System.out.println("2"+address.getId());
+			System.out.println("2");
 			hotels = hotelService.findByAddress(address.getId());
-		} 
-		if(name !=null || !name.isEmpty()){
-			System.out.println("3"+address.getId());
+		}else if(!name.isEmpty()) {
+			System.out.println("3");
 			hotels = hotelService.findByName(name);
-			}
+		}
+		
 		setMessageColor("bg-success");
 		throw new NHMException("MSG-007", hotels.size());
 		
